@@ -2,10 +2,14 @@
 require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
-const userRouters = require("./routes/userRoutes.js");
+const userRouter = require("./routes/userRoutes.js");
+const authRouter = require("./routes/authRoutes.js");
 
 // express app
 const app = express();
+
+// allows json as the input of the server
+app.use(express.json());
 
 // const dotenv = require("dotenv");
 // dotenv.config(); this is also acceptable
@@ -25,4 +29,5 @@ app.listen(3000, () => {
   console.log("Server listening on port 3000");
 });
 
-app.use("/api/user", userRouters);
+app.use("/api/user", userRouter);
+app.use("/api/auth", authRouter);
